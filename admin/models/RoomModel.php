@@ -37,5 +37,57 @@
             }
 
         }
+
+        public static function search($key)
+            {
+                $roomList = [];
+                require("connection_connect.php");
+                $sql = "SELECT 
+                        r.roomId, 
+                        t.typeName, 
+                        t.price, 
+                        r.roomStatus, 
+                        GROUP_CONCAT(d.detailName SEPARATOR ', ') AS roomDetails 
+                    FROM 
+                        rooms AS r 
+                    LEFT JOIN 
+                        types AS t ON r.types_typeId = t.typeId 
+                    LEFT JOIN 
+                        roomDetail AS rd ON r.roomId = rd.rooms_roomId 
+                    LEFT JOIN 
+                        details AS d ON rd.details_detailId = d.detailId 
+                    WHERE 
+                        (r.roomId IN (
+                            SELECT 
+                                r2.roomId 
+                            FROM 
+                                rooms AS r2 
+                            LEFT JOIN 
+                                roomDetail AS rd2 ON r2.roomId = rd2.rooms_roomId 
+                            LEFT JOIN 
+                                details AS d2 ON rd2.details_detailId = d2.detailId 
+                            WHERE 
+                                d2.detailName LIKE '%$key%'  -- ค้นหา detail ที่ตรงตามคำค้น
+                        ) 
+                        OR r.roomId LIKE '%$key%' OR 
+                            t.typeName LIKE '%$key%' OR 
+                            t.price LIKE '%$key%' OR 
+                            r.roomStatus LIKE '%$key%')  -- เพิ่มเงื่อนไขการค้นหาสำหรับ roomId, typeName, price, roomStatus
+                    GROUP BY 
+                        r.roomId, t.typeName, t.price, r.roomStatus 
+                    ORDER BY 
+                        r.roomId;";
+                $result = $conn->query($sql);
+                while ($my_row = $result->fetch_assoc()){
+                    $id = $my_row['roomId'];
+                    $type = $my_row['typeName'];
+                    $detail = $my_row['roomDetails'];
+                    $roomStatus = $my_row['roomStatus'];
+                    $price = $my_row['price'];
+                    $roomList[] = new Room($id, $type, $detail, $roomStatus, $price);
+                }
+                require("connection_close.php");
+                return $roomList;  
+            }
     }
 ?>
