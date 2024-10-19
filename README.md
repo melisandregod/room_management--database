@@ -4,12 +4,12 @@ Boostrap,css,javascript
 
 To-do 
 - Public Side
- - Featured Rooms
- - View all rooms page
- - Room details page
+   1.Featured Rooms
+   2.View all rooms page
+   3.Room details page
  
 
 - Admin
-  -dashboard check in check out,number of room,chart 
- - Room,type,detail actions(add, update, delete)
- - View all rooms,type,detail 
+  1.dashboard check in check out,number of room,chart 
+  2.Room,type,detail actions(add, update, delete)
+  3.View all rooms,type,detail 
