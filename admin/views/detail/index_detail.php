@@ -5,7 +5,7 @@
     <div class="header d-flex justify-content-between align-items-center">
         <h1>Manage Room Detail</h1>
         <form class="d-flex">
-            <a href="#" class="btn btn-light me-2">ADD</a>
+            <a href="#" class="btn btn-light me-2">ADD NEW DETAIL</a>
             <input type="search" class="form-control search-bar" placeholder="Search..." aria-label="Search">
             <button class="btn btn-outline-light ms-2" type="submit">Search</button>
         </form>
