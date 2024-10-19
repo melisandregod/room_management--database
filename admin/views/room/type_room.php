@@ -1,57 +1,45 @@
-        <div class="main--content">
-            <div class="header--wrapper">
-                <div class="header--title">
-                   <span>Room</span>
-                    <h2>Edit</h2>
 
-                </div>
-                <div class="header--action">
-                    <a href="?controller=room&action=index&buttonId=room"><span>Rooms</span></a>
-                </div>
-                <div class="header--action">
-                    <a href="?controller=room&action=type&buttonId=room"><span>Room Types</span></a>
-                </div>
-                <div class="header--action">
-                    <a href="?controller=room&action=detail&buttonId=room"><span>Room Details</span></a>
-                </div>
-                
-            
-                <div class="search--box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input tpye="text" placeholder="Search" />
-                </div>
-                
-            
-            </div> 
-            <div class="button--wrapper">
-                <div class="button--action">
-                    <a href="?controller=room&action=index&buttonId=room"><span>ADD</span></a>
-                </div>
-            </div> 
-            <div class="table--wrapper">
-                <div class="table--container">
-                <table>
-                <thead>
-                    <tr>
+        <div class="header d-flex justify-content-between align-items-center">
+        <h1>Manage Room Type</h1>
+        <form class="d-flex">
+            <a href="#" class="btn btn-light me-2">ADD</a>
+            <input type="search" class="form-control search-bar" placeholder="Search..." aria-label="Search">
+            <button class="btn btn-outline-light ms-2" type="submit">Search</button>
+        </form>
+    </div>
+
+        <div class="table-container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
                         <th>ID</th>
                         <th>Type</th>
                         <th>Price</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($typeList as $type): ?>
+                        <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($typeList as $type): ?>
                     <tr>
                         <td><?php echo $type->id; ?></td>
                         <td><?php echo $type->name; ?></td>
                         <td><?php echo $type->price; ?></td>
-                        <td><a href="?controller=rooms&action=update&id=<?php echo $detail->id; ?>"class = "btn green">Update</a></td>
-                        <td><a href="?controller=rooms&action=delete&id=<?php echo $detail->id; ?>"class = "btn red">Delete</a></td>
+                        <td><a href="?controller=rooms&action=update&id=<?php echo $room->id; ?>"class = "btn btn-warning btn-sm">Update</a>
+                        <a href="?controller=rooms&action=delete&id=<?php echo $room->id; ?>"class = "btn btn-danger btn-sm">Delete</a></td>
                     </tr>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
-                </div>
-            </div>
-        </div>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
