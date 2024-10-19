@@ -3,8 +3,10 @@
         <h1>Manage Room Type</h1>
         <form class="d-flex">
             <a href="#" class="btn btn-light me-2">ADD NEW TYPE</a>
-            <input type="search" class="form-control search-bar" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-outline-light ms-2" type="submit">Search</button>
+            <input type="text" name="key" class="form-control search-bar" placeholder="Search..." aria-label="Search">
+            <input type="hidden" name="controller" value="type"/>
+            <button class="btn btn-outline-light ms-2" type="submit" name="action" value="search">Search</button>
+            <a href="?controller=type&action=index" class="btn btn-outline-light ms-2">Clear</a>
         </form>
     </div>
 

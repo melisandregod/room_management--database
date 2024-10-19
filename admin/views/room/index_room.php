@@ -6,7 +6,7 @@
             <input type="text" name="key" class="form-control search-bar" placeholder="Search..." aria-label="Search">
             <input type="hidden" name="controller" value="room"/>
             <button class="btn btn-outline-light ms-2" type="submit" name="action" value="search">Search</button>
-            <a href="?controller=room&action=index" class="btn btn-danger ms-2">Clear Search</a>
+            <a href="?controller=room&action=index" class="btn btn-outline-light ms-2">Clear</a>
         </form>
     </div>
 
