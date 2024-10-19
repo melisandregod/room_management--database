@@ -50,10 +50,10 @@
                             <a href="?controller=room&action=index" class="sidebar-link">Room</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="?controller=room&action=type" class="sidebar-link">Type</a>
+                            <a href="?controller=type&action=index" class="sidebar-link">Type</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="?controller=room&action=detail" class="sidebar-link">Detail</a>
+                            <a href="?controller=detail&action=index" class="sidebar-link">Detail</a>
                         </li>
                     </ul>
                 </li>

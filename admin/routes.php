@@ -1,5 +1,5 @@
 <?php
-    $controllers = array('pages'=>['home','error'],'room'=>['index','detail','type']);//action
+    $controllers = array('pages'=>['home','error'],'room'=>['index'],'detail'=>['index'],'type'=>['index']);//action
 
     function call($controller,$action){
         require_once("controllers/".$controller."_controller.php");
@@ -7,10 +7,15 @@
             case "pages": $controller_obj = new PagesController();
                         break;
             case "room": require_once('models/RoomModel.php');
-                        require_once('models/TypeModel.php');
-                        require_once('models/DetailModel.php');
+                        
                         $controller_obj = new RoomController();
                         break;
+            case "detail": require_once('models/DetailModel.php');
+                           $controller_obj = new DetailController();
+                            break;  
+            case "type": require_once('models/TypeModel.php');
+            $controller_obj = new TypeController();
+            break;
         }
         $controller_obj->{$action}(); //เรียก function(action) ของ controller
     }
