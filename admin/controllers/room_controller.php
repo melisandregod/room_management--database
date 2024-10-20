@@ -23,11 +23,14 @@
             $roomStatus = $_GET['status'];
             $detail = $_GET['detail']; 
             Room::addRoom($id,$typeid, $roomStatus);
-            // ลูป ตามจำนวนอาเร detailที่รับมา เพื่อใช้ addRoomdetail
+            // ลูป ตามจำนวนอาเร detailที่รับมา เพื่อใช้ addRoomDetail
             foreach ($detail as $detailid) {
                 Room::addRoomDetail($id, $detailid); // เพิ่มรายละเอียดห้อง
             }
-            RoomController::index();
+            // redirect ไปindex_roomเพื่อ clear get
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "?controller=room&action=index";';
+            echo '</script>';
         }
 
 
