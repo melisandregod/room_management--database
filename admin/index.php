@@ -34,26 +34,26 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="?controller=pages&action=home" class="sidebar-link">
+                    <a href="?controller=pages&action=home" class="sidebar-link <?php echo ($controller == 'pages') ? 'active' : ''; ?>">
                     <i class="bi bi-speedometer"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link <?php echo ($controller == 'room' OR  $controller == 'type' OR $controller == 'detail') ? 'active' : ''; ?> collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="bi bi-house"></i>
                         <span>Manage</span>
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="?controller=room&action=index" class="sidebar-link">Room</a>
+                            <a href="?controller=room&action=index" class="sidebar-link <?php echo ($controller == 'room') ? 'active' : ''; ?>">Room</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="?controller=type&action=index" class="sidebar-link">Type</a>
+                            <a href="?controller=type&action=index" class="sidebar-link <?php echo ($controller == 'type') ? 'active' : ''; ?>">Type</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="?controller=detail&action=index" class="sidebar-link">Detail</a>
+                            <a href="?controller=detail&action=index" class="sidebar-link <?php echo ($controller == 'detail') ? 'active' : ''; ?>">Detail</a>
                         </li>
                     </ul>
                 </li>
