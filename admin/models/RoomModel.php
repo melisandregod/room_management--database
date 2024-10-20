@@ -5,6 +5,7 @@
         public $price;
         public $detail; //detail
         public $roomStatus; //status
+        public $typeid;
 
         public function __construct($id, $type, $detail,$roomStatus,$price) {
             $this->id = $id;
@@ -118,5 +119,25 @@
                 require("connection_close.php");
                 return $roomTypes;
             }
+
+            public static function addRoom($id,$typeid,$roomStatus){
+                require("connection_connect.php");
+                $sql = "INSERT INTO rooms (roomId,types_typeId,roomStatus)
+                VALUES ('$id','$typeid','$roomStatus');";
+                $result = $conn->query($sql);
+                require("connection_close.php");
+                return "add sucesss $result rows"; 
+            }
+
+            public static function addRoomDetail($id,$detailid){
+                require("connection_connect.php");
+                $sql = "INSERT INTO roomDetail (rooms_roomId,details_detailId)
+                VALUES ('$id','$detailid');";
+                $result = $conn->query($sql);
+                require("connection_close.php");
+                return "add sucesss $result rows"; 
+            }
+
+
     }
 ?>

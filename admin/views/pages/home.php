@@ -55,7 +55,7 @@ foreach ($roomTypesStats as $type) {
 </head>
 <body>
     <div class="container mt-5 dashboard-container">
-        <h1 class="mb-4 text-center">Welcome Alan Dsiva</h1>
+        <h1 class="mb-4 text-center">Dashboard</h1>
         
         <div class="row text-center">
             <div class="col-md-4">
