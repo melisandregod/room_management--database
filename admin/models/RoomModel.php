@@ -89,5 +89,34 @@
                 require("connection_close.php");
                 return $roomList;  
             }
+
+
+            public static function getRoomStats() { // ฟังก์ชันเพื่อดึงข้อมูลห้องทั้งหมด
+                require("connection_connect.php");
+            
+                $sql = "SELECT 
+                            COUNT(*) AS totalRooms,
+                            SUM(CASE WHEN roomStatus = 0 THEN 1 ELSE 0 END) AS availableRooms,
+                            SUM(CASE WHEN roomStatus = 1 THEN 1 ELSE 0 END) AS occupiedRooms
+                        FROM rooms;";
+            
+                $result = $conn->query($sql);
+                require("connection_close.php");
+                return $result->fetch_assoc();
+                
+            }
+
+            public static function getRoomTypesStats() { // ฟังก์ชันเพื่อดึงข้อมูลประเภทห้องและจำนวนห้องในแต่ละประเภท
+                require("connection_connect.php");
+                $sql = "SELECT types.typeName AS typeName, COUNT(rooms.roomId) AS count FROM rooms LEFT JOIN types ON rooms.types_typeId = types.typeId GROUP BY types.typeName;";
+            
+                $result = $conn->query($sql);
+                $roomTypes = [];
+                while ($row = $result->fetch_assoc()) {
+                    $roomTypes[] = $row;
+                }
+                require("connection_close.php");
+                return $roomTypes;
+            }
     }
 ?>

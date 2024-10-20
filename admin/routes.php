@@ -4,7 +4,8 @@
     function call($controller,$action){
         require_once("controllers/".$controller."_controller.php");
         switch($controller){
-            case "pages": $controller_obj = new PagesController();
+            case "pages":   require_once('models/RoomModel.php');
+                            $controller_obj = new PagesController();
                         break;
             case "room": require_once('models/RoomModel.php');
                         
