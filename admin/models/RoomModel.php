@@ -21,7 +21,7 @@
                 require("connection_connect.php");
                 $sql = "SELECT r.roomId, t.typeName, t.price, r.roomStatus, GROUP_CONCAT(d.detailName SEPARATOR ', ') AS roomDetails FROM rooms r 
                         LEFT JOIN types t ON r.types_typeId = t.typeId 
-                        LEFT JOIN roomDetail rd ON r.roomId = rd.rooms_roomId 
+                        LEFT JOIN roomdetail rd ON r.roomId = rd.rooms_roomId 
                         LEFT JOIN details d ON rd.details_detailId = d.detailId 
                         GROUP BY r.roomId;"; //เก็บเทเบิ้ลที่โชว์
                 $result = $conn->query($sql);
@@ -54,17 +54,17 @@
                     LEFT JOIN 
                         types AS t ON r.types_typeId = t.typeId 
                     LEFT JOIN 
-                        roomDetail AS rd ON r.roomId = rd.rooms_roomId 
+                        roomdetail AS rd ON r.roomId = rd.rooms_roomId 
                     LEFT JOIN 
                         details AS d ON rd.details_detailId = d.detailId 
                     WHERE 
-                        (r.roomId IN (
+                        (r.roomId IN ( -- หา roomId ที่ตรงตาม key ใช้ in เพราะ อาจจะ มี roomid หลายอัน LIKE ไม่สามารถใช้ได้หลายอัน
                             SELECT 
                                 r2.roomId 
                             FROM 
                                 rooms AS r2 
                             LEFT JOIN 
-                                roomDetail AS rd2 ON r2.roomId = rd2.rooms_roomId 
+                                roomdetail AS rd2 ON r2.roomId = rd2.rooms_roomId 
                             LEFT JOIN 
                                 details AS d2 ON rd2.details_detailId = d2.detailId 
                             WHERE 
@@ -131,7 +131,7 @@
 
             public static function addRoomDetail($id,$detailid){
                 require("connection_connect.php");
-                $sql = "INSERT INTO roomDetail (rooms_roomId,details_detailId)
+                $sql = "INSERT INTO roomdetail (rooms_roomId,details_detailId)
                 VALUES ('$id','$detailid');";
                 $result = $conn->query($sql);
                 require("connection_close.php");
