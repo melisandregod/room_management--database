@@ -33,6 +33,15 @@
             echo '</script>';
         }
 
+        public function delete(){
+            $id = $_GET['id'];
+            Room::delete($id); // delete room
+            // redirect ไปindex_roomเพื่อ clear get
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "?controller=room&action=index";';
+            echo '</script>';
+    
+        }
 
         }
 

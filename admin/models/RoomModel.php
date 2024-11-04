@@ -138,6 +138,16 @@
                 return "add sucesss $result rows"; 
             }
 
+            public static function delete($id){
+                require_once("connection_connect.php");
+                $sql = "DELETE FROM roomdetail WHERE rooms_roomId = '$id'";
+                $sql1 = "DELETE FROM rooms WHERE roomId = '$id'";
+                $result = $conn->query($sql);
+                $result1 = $conn->query($sql1);
+                require("connection_close.php");
+                return "delete success $result row";
+            }
+
 
     }
 ?>
