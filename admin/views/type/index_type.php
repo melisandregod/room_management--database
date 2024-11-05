@@ -26,7 +26,7 @@
                         <td><?php echo $type->id; ?></td>
                         <td><?php echo $type->name; ?></td>
                         <td><?php echo $type->price; ?></td>
-                        <td><a href="?controller=rooms&action=update&id=<?php echo $room->id; ?>"class = "btn btn-warning btn-sm">Update</a>
+                        <td><a href="?controller=type&action=updateForm&id=<?php echo $type->id; ?>"class = "btn btn-warning btn-sm">Update</a>
                         <!-- ปุ่ม Delete ในแต่ละแถว -->
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" 
                                 data-id="<?php echo $type->id; ?>" 

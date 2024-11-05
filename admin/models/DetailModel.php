@@ -53,5 +53,32 @@
             return "add sucesss $result rows"; 
         }
 
+        public static function updateDetail($id, $detailName) {
+            require("connection_connect.php");
+            $sql = "UPDATE details
+                    SET detailName = '$detailName'
+                    WHERE detailId = '$id'"; 
+            $result = $conn->query($sql);
+            require("connection_close.php");
+            
+            return "add sucesss $result rows"; 
+        }
+        
+
+
+        public static function get($id)
+
+        {
+            require("connection_connect.php");
+            $sql = "SELECT * FROM `details`
+                    WHERE detailId = '$id'";
+            $result = $conn->query($sql);
+            $my_row = $result->fetch_assoc();
+            $id = $my_row['detailId'];
+            $detailName = $my_row['detailName'];
+            require("connection_close.php");
+            return new Detail($id,$detailName);
+
+        }
 }
 ?>

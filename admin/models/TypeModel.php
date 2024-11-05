@@ -53,5 +53,33 @@
             require("connection_close.php");
             return "add sucesss $result rows"; 
         }
+
+        public static function updateType($id, $typeName,$price) {
+            require("connection_connect.php");
+            $sql = "UPDATE types 
+                    SET typeName = '$typeName', price = $price
+                    WHERE typeId = '$id'"; 
+            $result = $conn->query($sql);
+            require("connection_close.php");
+            return "add sucesss $result rows"; 
+        }
+        
+
+
+        public static function get($id)
+
+        {
+            require("connection_connect.php");
+            $sql = "SELECT * FROM `types`
+                    WHERE typeId = '$id'";
+            $result = $conn->query($sql);
+            $my_row = $result->fetch_assoc();
+            $id = $my_row['typeId'];
+            $typeName = $my_row['typeName'];
+            $price = $my_row['price'];
+            require("connection_close.php");
+            return new Type($id,$typeName,$price);
+
+        }
     }
 ?>

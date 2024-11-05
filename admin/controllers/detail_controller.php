@@ -36,6 +36,28 @@
             echo '</script>';
         }
 
+
+        public function updateForm()
+        {
+            $id = $_GET['id'];
+            $detail = Detail::get($id);
+            require_once('views/detail/update_detail.php');
+        }
+
+
+
+        public function update(){
+            $id = $_GET['detailId'];
+            $detailName = $_GET['detailName'];
+            Detail::updateDetail($id, $detailName);
+
+           
+            // redirect ไปindex_roomเพื่อ clear get
+           echo '<script type="text/javascript">';
+           echo 'window.location.href = "?controller=detail&action=index";';
+           echo '</script>';
+        }
+
         
     }
     
