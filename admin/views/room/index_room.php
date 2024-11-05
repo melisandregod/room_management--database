@@ -33,7 +33,7 @@
                         <td style="color: <?php echo $room->roomStatus == 0 ? '#28a745' : 'red'; ?>;">
                             <?php echo $room->roomStatus == 0 ? 'Available' : 'Occupied'; ?>
                         </td>
-                        <td><a href="?controller=room&action=update&id=<?php echo $room->id; ?>"class = "btn btn-warning btn-sm">Update</a>
+                        <td><a href="?controller=room&action=updateForm&id=<?php echo $room->id; ?>"class = "btn btn-warning btn-sm">Update</a>
                         <!-- ปุ่ม Delete ในแต่ละแถว -->
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" 
                                 data-id="<?php echo $room->id; ?>" 

@@ -147,6 +147,80 @@
                 require("connection_close.php");
                 return "delete success $result row";
             }
+            public static function updateRoomDetail($id,$detailid)
+            {
+                    require("connection_connect.php");
+                    $sql = "UPDATE roomdetail
+                            SET rooms_roomId = '$id',detailid = '$detailid'
+                            WHERE roomId = '$id' ";//ใช้ id ในก่ารหา เเละลบได้เเค่ name,offid
+                    $result = $conn->query($sql);
+                    require("connection_close.php");
+                    return "update success $result row";
+            }
+
+            public static function updateRoom($id, $typeid, $roomStatus) {
+                require("connection_connect.php");
+                $sql = "UPDATE rooms 
+                        SET roomStatus = ?, types_typeId = ?
+                        WHERE roomId = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("iii", $roomStatus, $typeid, $id);
+                $stmt->execute();
+                $stmt->close();
+                require("connection_close.php");
+            }
+            
+
+
+            public static function getRoom($id)
+
+            {
+                require("connection_connect.php");
+                $sql = "SELECT r.roomId, t.typeName, t.price, r.roomStatus, GROUP_CONCAT(d.detailName SEPARATOR ', ') AS roomDetails FROM rooms r 
+                        LEFT JOIN types t ON r.types_typeId = t.typeId 
+                        LEFT JOIN roomdetail rd ON r.roomId = rd.rooms_roomId 
+                        LEFT JOIN details d ON rd.details_detailId = d.detailId 
+                        WHERE r.roomId = '$id'";
+                $result = $conn->query($sql);
+                $my_row = $result->fetch_assoc();
+                $id = $my_row['roomId'];
+                    $type = $my_row['typeName'];
+                    $detail = $my_row['roomDetails'];
+                    $roomStatus = $my_row['roomStatus'];
+                    $price = $my_row['price'];
+                    require("connection_close.php");
+                    return new Room($id, $type, $detail, $roomStatus, $price);
+
+            }
+            public static function getType($id)
+
+            {
+                require("connection_connect.php");
+                $sql = "SELECT types.typeName AS typeName,types.typeId As typeId FROM rooms 
+                        LEFT JOIN types ON rooms.types_typeId = types.typeId 
+                        WHERE rooms.roomId = '$id'";
+                $result = $conn->query($sql);
+                $my_row = $result->fetch_assoc();
+                $id = $my_row['typeId'];
+                require("connection_close.php");
+                return $id;
+            }
+
+            public static function deleteRoomDetails($roomId) {
+                require("connection_connect.php");
+                $sql = "DELETE FROM roomdetail WHERE rooms_roomId = $roomId";
+                $result = $conn->query($sql);
+                require("connection_close.php");
+                return "delete success $result row";
+            }
+
+
+            
+        
+
+            
+       
+
 
 
     }

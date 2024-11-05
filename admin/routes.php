@@ -1,5 +1,5 @@
 <?php
-    $controllers = array('pages'=>['home','error'],'room'=>['index','search','addForm','addRoom','update','delete'],'detail'=>['index','search'],'type'=>['index','search']);//action
+    $controllers = array('pages'=>['home','error'],'room'=>['index','search','addForm','addRoom','update','delete','updateForm'],'detail'=>['index','search','addForm','addDetail','update','delete','updateForm'],'type'=>['index','search','addType','update','delete','updateForm']);//action
 
     function call($controller,$action){
         require_once("controllers/".$controller."_controller.php");
@@ -10,6 +10,7 @@
             case "room": require_once('models/RoomModel.php');
                         require_once('models/TypeModel.php');
                         require_once('models/DetailModel.php');
+                        require_once('models/RoomDetailModel.php');
                         $controller_obj = new RoomController();
                         break;
             case "detail": require_once('models/DetailModel.php');
