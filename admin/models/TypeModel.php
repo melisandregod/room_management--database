@@ -37,5 +37,12 @@
             return $typeList;
 
         }
+        public static function delete($id){
+            require_once("connection_connect.php");
+            $sql = "DELETE FROM types WHERE typeId = '$id'";
+            $result = $conn->query($sql);;
+            require("connection_close.php");
+            return "delete success $result row";
+        }
     }
 ?>

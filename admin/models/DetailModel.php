@@ -34,6 +34,15 @@
             return $detailList;
 
         }
+        public static function delete($id){
+            require_once("connection_connect.php");
+            $sql1 = "DELETE FROM roomdetail WHERE details_detailId = '$id'";
+            $result1 = $conn->query($sql1);;
+            $sql = "DELETE FROM details WHERE detailId = '$id'";
+            $result = $conn->query($sql);;
+            require("connection_close.php");
+            return "delete success $result row";
+        }
 
 }
 ?>
