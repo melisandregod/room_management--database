@@ -40,6 +40,7 @@
                                 data-type="<?php echo htmlspecialchars($room->type); ?>"
                                 data-price="<?php echo $room->price; ?>"
                                 data-detail="<?php echo htmlspecialchars($room->detail); ?>">
+                    
                             Delete
                         </button>
                     </tr>
