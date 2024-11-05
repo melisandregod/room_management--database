@@ -44,5 +44,14 @@
             return "delete success $result row";
         }
 
+        public static function addDetail($id,$detail){
+            require("connection_connect.php");
+            $sql = "INSERT INTO details (detailId,detailName)
+            VALUES ('$id','$detail');";
+            $result = $conn->query($sql);
+            require("connection_close.php");
+            return "add sucesss $result rows"; 
+        }
+
 }
 ?>

@@ -20,5 +20,21 @@
             echo '</script>';
     
         }
+
+        public function addForm()
+        {   
+            require_once('views/type/add_type.php');
+        }
+
+        public function addType(){
+            $id = $_GET['typeId'];
+            $typeName = $_GET['typeName']; 
+            $price = $_GET[price];
+            Type::addType($id,$typeName,$price);
+            // redirect ไปindex_detailเพื่อ clear get
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "?controller=type&action=index";';
+            echo '</script>';
+        }
     }
 ?>

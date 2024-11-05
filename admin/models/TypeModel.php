@@ -44,5 +44,14 @@
             require("connection_close.php");
             return "delete success $result row";
         }
+
+        public static function addType($id,$detail,$price){
+            require("connection_connect.php");
+            $sql = "INSERT INTO types (typeId,typeName,price)
+            VALUES ('$id','$detail',$price);";
+            $result = $conn->query($sql);
+            require("connection_close.php");
+            return "add sucesss $result rows"; 
+        }
     }
 ?>

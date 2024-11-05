@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 04, 2024 at 11:01 PM
+-- Generation Time: Nov 06, 2024 at 03:42 AM
 -- Server version: 5.7.33-0ubuntu0.16.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
@@ -43,13 +43,10 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`bookingId`, `bookingDate`, `checkInStatus`, `checkOutStatus`, `checkInDate`, `checkOutDate`, `customers_customerId`, `registStaff_registStaffId`, `totalPrice`) VALUES
-(80, '2024-10-24 06:36:21', 0, 0, '2024-10-18 02:00:00', '2024-10-19 12:00:00', 1, 1, 2500),
-(81, '2024-10-24 06:37:20', 0, 0, '2024-10-16 02:00:00', '2024-10-19 12:00:00', 2, 1, 1250),
-(82, '2024-10-24 07:36:07', 0, 0, '2024-10-16 02:00:00', '2024-10-20 12:00:00', 1, 1, 1750),
-(87, '2024-10-24 07:41:20', 0, 0, '2024-10-14 02:00:00', '2024-10-21 12:00:00', 2, 1, 5250),
-(88, '2024-10-24 07:48:26', 0, 0, '2024-10-07 02:00:00', '2024-10-09 12:00:00', 2, 1, 2500),
-(89, '2024-10-24 08:27:29', 0, 0, '2024-10-07 02:00:00', '2024-10-09 12:00:00', 2, 1, 2500),
-(90, '2024-11-03 01:09:40', 0, 0, '2024-11-13 02:00:00', '2024-11-18 12:00:00', 3, 1, 5500);
+(82, '2024-10-24 07:36:07', 0, 0, '2024-11-16 14:00:00', '2024-11-20 12:00:00', 1, 1, 3500),
+(88, '2024-10-24 07:48:26', 1, 0, '2024-10-07 02:00:00', '2024-10-09 12:00:00', 2, 1, 2500),
+(89, '2024-10-24 08:27:29', 1, 1, '2024-10-07 02:00:00', '2024-10-09 12:00:00', 2, 1, 2500),
+(90, '2024-11-03 01:09:40', 1, 1, '2025-04-28 12:00:00', '2025-05-03 12:00:00', 3, 1, 5100);
 
 -- --------------------------------------------------------
 
@@ -68,19 +65,16 @@ CREATE TABLE `bookingdetail` (
 --
 
 INSERT INTO `bookingdetail` (`bookingDetailId`, `booking_bookingId`, `rooms_roomId`) VALUES
-(76, 80, 1),
-(77, 80, 2),
-(78, 81, 7),
-(79, 82, 3),
-(92, 87, 4),
-(93, 87, 10),
-(94, 87, 8),
 (95, 88, 1),
 (96, 88, 2),
-(97, 89, 1),
-(98, 89, 1),
-(99, 90, 5),
-(100, 90, 6);
+(108, 88, 1),
+(109, 88, 1),
+(183, 89, 1),
+(184, 89, 1),
+(199, 90, 3),
+(200, 90, 3),
+(216, 82, 3),
+(217, 82, 4);
 
 -- --------------------------------------------------------
 
@@ -95,6 +89,14 @@ CREATE TABLE `cleanschedule` (
   `cleanScheduleTime` datetime NOT NULL,
   `cleanScheduleStatus` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cleanschedule`
+--
+
+INSERT INTO `cleanschedule` (`cleanScheduleId`, `registStaff_registStaffId`, `rooms_roomId`, `cleanScheduleTime`, `cleanScheduleStatus`) VALUES
+(2, 1, 2, '2024-11-06 05:42:00', 1),
+(3, 1, 10, '2024-11-07 11:57:00', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,7 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`customerId`, `firstName`, `lastName`, `customerIdCard`, `phoneNo`, `customerEmail`) VALUES
 (1, 'David', 'Miller', '1234567890009', '0812345698', 'bluefox93@gmail.com'),
-(2, 'John', 'Smith', '1234567890123', '0812345678', 'sunsetgazer88@gmail.com\n'),
+(2, 'John', 'Smith', '1234567890123', '0812345678', 'sunsetgazer88@gmail.com'),
 (3, 'Emily', 'Johnson', '2345678901234', '0823456789', 'redlion56@gmail.com'),
 (4, 'Michael', 'Brown', '3456789012345', '0834567890', 'stardust47@gmail.com'),
 (5, 'Sarah', 'Davis', '4567890123456', '0845678901', 'wildflower91@gmail.com'),
@@ -146,7 +148,8 @@ INSERT INTO `customers` (`customerId`, `firstName`, `lastName`, `customerIdCard`
 (14, 'Chris', 'Thompson', '3456789012345', '0835678901', 'radiantstar42@gmail.com'),
 (15, 'Olivia', 'Martinez', '4567890123456', '0846789012', 'desertfox57@gmail.com'),
 (16, 'Matthew', 'Robinson', '5678901234567', '0857890123', 'emeraldsky65@gmail.com'),
-(47, 'Hatsawat', 'Intrasod', '-', '0619032431', 'aum3523@gmail.com');
+(47, 'Hatsawat', 'Intrasod', '-', '0619032431', 'aum3523@gmail.com'),
+(48, 'Hatsawat', 'Johnson', '-', '0823456789', 'aum3523@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -192,21 +195,22 @@ CREATE TABLE `optional` (
 --
 
 INSERT INTO `optional` (`optionalId`, `bookingDetail_bookingDetailId`, `services_serviceId`) VALUES
-(83, 76, 1),
-(84, 77, 1),
-(85, 78, 1),
-(86, 79, 1),
-(99, 92, 1),
-(100, 93, 1),
-(101, 94, 1),
 (102, 95, 1),
 (103, 96, 1),
-(104, 97, 1),
-(105, 98, 1),
-(106, 99, 1),
-(107, 99, 2),
-(108, 100, 1),
-(109, 100, 2);
+(128, 108, 1),
+(129, 108, 2),
+(130, 109, 1),
+(131, 109, 2),
+(292, 183, 1),
+(293, 183, 2),
+(294, 184, 1),
+(295, 184, 2),
+(324, 199, 1),
+(325, 199, 2),
+(327, 200, 1),
+(328, 200, 2),
+(358, 216, 1),
+(359, 217, 1);
 
 -- --------------------------------------------------------
 
@@ -233,6 +237,14 @@ CREATE TABLE `payments` (
   `paymentName` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`paymentId`, `paymentName`) VALUES
+(1, 'Cash'),
+(2, 'Credit Card');
+
 -- --------------------------------------------------------
 
 --
@@ -251,10 +263,8 @@ CREATE TABLE `registstaff` (
 --
 
 INSERT INTO `registstaff` (`registStaffId`, `staffs_staffId`, `timeIn`, `timeOut`) VALUES
-(1, 1, NULL, NULL),
-(2, 4, NULL, NULL),
-(3, 7, NULL, NULL),
-(4, 10, NULL, NULL);
+(1, 1, '2024-11-08 07:00:00', '2024-11-08 23:13:00'),
+(8, 10, '2024-11-08 05:56:00', '2024-11-08 17:56:00');
 
 -- --------------------------------------------------------
 
@@ -282,7 +292,10 @@ INSERT INTO `roomdetail` (`roomDetailId`, `rooms_roomId`, `details_detailId`) VA
 (7, 4, 5),
 (8, 5, 6),
 (9, 6, 9),
-(10, 7, 10);
+(10, 7, 10),
+(27, 777, 4),
+(28, 777, 7),
+(29, 777, 3);
 
 -- --------------------------------------------------------
 
@@ -292,7 +305,7 @@ INSERT INTO `roomdetail` (`roomDetailId`, `rooms_roomId`, `details_detailId`) VA
 
 CREATE TABLE `rooms` (
   `roomId` int(11) NOT NULL,
-  `types_typeId` int(11) NOT NULL,
+  `types_typeId` int(11) DEFAULT NULL,
   `roomStatus` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -310,7 +323,8 @@ INSERT INTO `rooms` (`roomId`, `types_typeId`, `roomStatus`) VALUES
 (7, 1, 1),
 (8, 2, 1),
 (9, 3, 0),
-(10, 2, 0);
+(10, 2, 0),
+(777, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -330,7 +344,8 @@ CREATE TABLE `services` (
 
 INSERT INTO `services` (`serviceId`, `serviceName`, `servicePrice`) VALUES
 (1, 'Breakfast Package', 250),
-(2, 'Dinner Package', 500);
+(2, 'Dinner Package', 500),
+(4, 'Cot', 300);
 
 -- --------------------------------------------------------
 
@@ -340,20 +355,20 @@ INSERT INTO `services` (`serviceId`, `serviceName`, `servicePrice`) VALUES
 
 CREATE TABLE `staffs` (
   `staffId` int(11) NOT NULL,
-  `staffFristName` varchar(45) NOT NULL,
+  `staffFirstName` varchar(45) NOT NULL,
   `staffLastName` varchar(45) NOT NULL,
-  `postition` varchar(45) NOT NULL
+  `position` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `staffs`
 --
 
-INSERT INTO `staffs` (`staffId`, `staffFristName`, `staffLastName`, `postition`) VALUES
+INSERT INTO `staffs` (`staffId`, `staffFirstName`, `staffLastName`, `position`) VALUES
 (1, 'Hatsawat', 'Intrasod', 'cashier'),
 (2, 'James', 'Williams', 'cleaner'),
 (3, 'Sophia', 'Johnson', 'cleaner'),
-(4, 'Ethan', 'Brown', 'cashier'),
+(4, 'Ethan', 'Brown', 'chef'),
 (5, 'Emma', 'Davis', 'cleaner'),
 (6, 'Noah', 'Miller', 'cleaner'),
 (7, 'Olivia', 'Wilson', 'cashier'),
@@ -364,8 +379,7 @@ INSERT INTO `staffs` (`staffId`, `staffFristName`, `staffLastName`, `postition`)
 (12, 'Lucas', 'Jackson', 'cleaner'),
 (13, 'Mia', 'Harris', 'cleaner'),
 (14, 'Elijah', 'Thompson', 'cleaner'),
-(15, 'Amelia', 'White', 'cleaner'),
-(16, 'Benjamin', 'Lee', 'cashier');
+(15, 'Amelia', 'White', 'cleaner');
 
 -- --------------------------------------------------------
 
@@ -506,17 +520,17 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `bookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT for table `bookingdetail`
 --
 ALTER TABLE `bookingdetail`
-  MODIFY `bookingDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `bookingDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 --
 -- AUTO_INCREMENT for table `cleanschedule`
 --
 ALTER TABLE `cleanschedule`
-  MODIFY `cleanScheduleId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cleanScheduleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -526,7 +540,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `details`
 --
@@ -536,37 +550,37 @@ ALTER TABLE `details`
 -- AUTO_INCREMENT for table `optional`
 --
 ALTER TABLE `optional`
-  MODIFY `optionalId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `optionalId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=360;
 --
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `payId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `paymentId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `paymentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `registstaff`
 --
 ALTER TABLE `registstaff`
-  MODIFY `registStaffId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `registStaffId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `roomdetail`
 --
 ALTER TABLE `roomdetail`
-  MODIFY `roomDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `roomDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `roomId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `roomId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `serviceId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `serviceId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `staffs`
 --
@@ -585,15 +599,15 @@ ALTER TABLE `types`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `fk_booking_customers` FOREIGN KEY (`customers_customerId`) REFERENCES `customers` (`customerId`),
-  ADD CONSTRAINT `fk_booking_registStaff1` FOREIGN KEY (`registStaff_registStaffId`) REFERENCES `registstaff` (`registStaffId`);
+  ADD CONSTRAINT `fk_booking_customers` FOREIGN KEY (`customers_customerId`) REFERENCES `customers` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_booking_registStaff1` FOREIGN KEY (`registStaff_registStaffId`) REFERENCES `registstaff` (`registStaffId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bookingdetail`
 --
 ALTER TABLE `bookingdetail`
-  ADD CONSTRAINT `fk_bookingDetail_booking1` FOREIGN KEY (`booking_bookingId`) REFERENCES `booking` (`bookingId`),
-  ADD CONSTRAINT `fk_bookingDetail_rooms1` FOREIGN KEY (`rooms_roomId`) REFERENCES `rooms` (`roomId`);
+  ADD CONSTRAINT `fk_bookingDetail_booking1` FOREIGN KEY (`booking_bookingId`) REFERENCES `booking` (`bookingId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_bookingDetail_rooms1` FOREIGN KEY (`rooms_roomId`) REFERENCES `rooms` (`roomId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cleanschedule`
@@ -606,22 +620,22 @@ ALTER TABLE `cleanschedule`
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `fk_comments_booking1` FOREIGN KEY (`bookingId`) REFERENCES `booking` (`bookingId`),
-  ADD CONSTRAINT `fk_comments_customers1` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`);
+  ADD CONSTRAINT `fk_comments_booking1` FOREIGN KEY (`bookingId`) REFERENCES `booking` (`bookingId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_comments_customers1` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `optional`
 --
 ALTER TABLE `optional`
-  ADD CONSTRAINT `fk_optional_bookingDetail1` FOREIGN KEY (`bookingDetail_bookingDetailId`) REFERENCES `bookingdetail` (`bookingDetailId`),
-  ADD CONSTRAINT `fk_optional_services1` FOREIGN KEY (`services_serviceId`) REFERENCES `services` (`serviceId`);
+  ADD CONSTRAINT `fk_optional_bookingDetail1` FOREIGN KEY (`bookingDetail_bookingDetailId`) REFERENCES `bookingdetail` (`bookingDetailId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_optional_services1` FOREIGN KEY (`services_serviceId`) REFERENCES `services` (`serviceId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pay`
 --
 ALTER TABLE `pay`
-  ADD CONSTRAINT `fk_pay_booking1` FOREIGN KEY (`booking_bookingId`) REFERENCES `booking` (`bookingId`),
-  ADD CONSTRAINT `fk_pay_payments1` FOREIGN KEY (`payments_paymentId`) REFERENCES `payments` (`paymentId`);
+  ADD CONSTRAINT `fk_pay_booking1` FOREIGN KEY (`booking_bookingId`) REFERENCES `booking` (`bookingId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pay_payments1` FOREIGN KEY (`payments_paymentId`) REFERENCES `payments` (`paymentId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `registstaff`
@@ -640,7 +654,7 @@ ALTER TABLE `roomdetail`
 -- Constraints for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD CONSTRAINT `fk_rooms_types1` FOREIGN KEY (`types_typeId`) REFERENCES `types` (`typeId`);
+  ADD CONSTRAINT `fk_rooms_types1` FOREIGN KEY (`types_typeId`) REFERENCES `types` (`typeId`) ON DELETE SET NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

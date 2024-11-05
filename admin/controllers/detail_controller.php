@@ -20,6 +20,23 @@
             echo '</script>';
     
         }
+
+        public function addForm()
+        {   
+            require_once('views/detail/add_detail.php');
+        }
+
+        public function addDetail(){
+            $id = $_GET['detailid'];
+            $detail = $_GET['detail']; 
+            Detail::addDetail($id,$detail);
+            // redirect ไปindex_detailเพื่อ clear get
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "?controller=detail&action=index";';
+            echo '</script>';
+        }
+
+        
     }
     
 ?>
