@@ -6,7 +6,7 @@
         <h1>Manage Room Detail</h1>
         <form class="d-flex">
             <a href="?controller=detail&action=addForm" class="btn btn-outline-light me-2">ADD NEW DETAIL</a>
-            <input type="text" name="key" class="form-control search-bar" placeholder="Search..." aria-label="Search">
+            <input type="text" name="key" class="form-control search-bar" placeholder="Search...Detail" aria-label="Search">
             <input type="hidden" name="controller" value="detail"/>
             <button class="btn btn-outline-light ms-2" type="submit" name="action" value="search">Search</button>
             <a href="?controller=detail&action=index" class="btn btn-outline-light ms-2">Clear</a>

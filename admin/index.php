@@ -57,17 +57,9 @@
                         </li>
                     </ul>
                 </li>
-
-               
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-gear"></i>
-                        <span>Setting</span>
-                    </a>
-                </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="../public" class="sidebar-link">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Logout</span>
                 </a>
